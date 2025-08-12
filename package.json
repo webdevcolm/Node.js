@@ -5,7 +5,6 @@
   "main": "script.js",
   "type": "module",
   "scripts": {
-    "build": "run build",
     "start": "nodemon serve.js"
   },
   "keywords": [],
