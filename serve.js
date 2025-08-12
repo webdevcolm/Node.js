@@ -21,9 +21,12 @@ app.use(cors())
 const db= knex({
   client: 'pg',
   connection: {
-    host : '127.0.0.1', //localhost
+    connectionString : process.env.DATABASE_URL,
+    host : process.env.DATABASE_HOST,
     port: 5432, // add your port number here
-    database : 'big-brain' //add your database name you created here
+    user: process.env.DATABASE_USER,
+    password: process.env.DATABASE_PW,
+    database : process.env.DATABASE_DB
   }
 });
 
@@ -33,10 +36,7 @@ app.get('/',(req,res)=>{
 
 const MODEL_ID = 'face-detection';
 const MODEL_VERSION_ID = '6dc7e46bc9124c5c8824be4822abe105';
-
 const CLARIFAI_API_URL = "https://api.clarifai.com/v2/models/" + MODEL_ID + "/versions/" + MODEL_VERSION_ID + "/outputs";
-// 'https://api.clarifai.com/v2/models/face-detection/outputs';
-const PAT = '410c57870514442e83e69138051a61d2';
 
 app.post('/api/clarifai', async (req, res) => {
     try {
@@ -44,7 +44,7 @@ app.post('/api/clarifai', async (req, res) => {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
-                'Authorization': `Key ${PAT}`,
+                'Authorization': `Key ${API_CLARIFIA}`,
             },
             body: JSON.stringify(req.body),
         });
