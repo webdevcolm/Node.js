@@ -31,10 +31,6 @@ const db= knex({
   }
 });
 
-app.get('/',(req,res)=>{
-   res.json(database);
-})
-
 const MODEL_ID = 'face-detection';
 const MODEL_VERSION_ID = '6dc7e46bc9124c5c8824be4822abe105';
 const CLARIFAI_API_URL = "https://api.clarifai.com/v2/models/" + MODEL_ID + "/versions/" + MODEL_VERSION_ID + "/outputs";
