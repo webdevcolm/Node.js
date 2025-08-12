@@ -41,7 +41,7 @@ app.post('/api/clarifai', async (req, res) => {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
-                'Authorization': `Key ${API_CLARIFIA}`,
+                'Authorization': `Key ${process.env.API_CLARIFIA}`,
             },
             body: JSON.stringify(req.body),
         });
